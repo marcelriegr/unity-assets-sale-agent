@@ -47,7 +47,7 @@ module.exports = {
     if (CRON !== null) {
       CRON.cancel();
     }
-    CRON = schedule.scheduleJob('0 9/21 * * *', () => {
+    CRON = schedule.scheduleJob('0 9,21 * * *', () => {
       ops();
     });
   },
