@@ -1,0 +1,59 @@
+{
+  "name": "unityAssetsAgent",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "gulp --gulpfile gulpfile.js",
+    "test": "./node_modules/mocha/bin/mocha 'tests/**/*.js'",
+    "coverage": "./node_modules/.bin/nyc npm test"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 95,
+    "statements": 95,
+    "functions": 95,
+    "branches": 95,
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/app.js",
+      "src/server.js",
+      "src/config/index.js",
+      "src/graphql/util/errorHandler.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "cache": true,
+    "all": true,
+    "report-dir": "./coverage"
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "moment": "^2.19.2",
+    "mongoose": "^4.13.4",
+    "morgan": "~1.8.1",
+    "node-schedule": "^1.2.5",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-mocha": "^4.3.1",
+    "gulp-nodemon": "^2.2.1",
+    "mocha": "^3.2.0",
+    "nyc": "^11.3.0"
+  }
+}

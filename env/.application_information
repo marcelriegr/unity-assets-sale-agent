@@ -1,0 +1,3 @@
+APPLICATION_NAME=Unity-Assets-Agent
+DATABASE_HOST=assets_db
+DATABASE_NAME=assets

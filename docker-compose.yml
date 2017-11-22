@@ -1,0 +1,38 @@
+version: "2.1"
+
+services:
+
+  gateway:
+    image: nginx:latest
+    restart: always
+    ports:
+        - "80:80"
+    volumes:
+        - ./gateway/default.conf:/etc/nginx/conf.d/default.conf
+        - ./gateway/.htpasswd:/etc/apache2/.htpasswd
+    depends_on:
+      agent:
+        condition: service_started
+
+  agent:
+    build: ./agent/
+    volumes:
+      - ./agent:/src
+      - /src/node_modules
+    ports:
+      - "4000:4000"
+    env_file:
+      - env/.application_information
+    depends_on:
+      assets_db:
+        condition: service_started
+
+  assets_db:
+    build: ./assets_db/
+    ports:
+      - '50001:27017'
+    volumes:
+      - assets_db_volumes:/data/db
+
+volumes:
+  assets_db_volumes:
